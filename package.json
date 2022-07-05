@@ -1,0 +1,26 @@
+{
+  "name": "es-build-setup",
+  "version": "1.0.0",
+  "description": "esbuild setup for not big projects",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "build": "cross-env MODE=production ts-node ./config/build/esbuild.prod.ts",
+    "start": "cross-env PORT=3000 ts-node ./config/build/esbuild.dev.ts"
+  },
+  "keywords": [],
+  "author": "Nick Miriad",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/react": "^18.0.14",
+    "@types/react-dom": "^18.0.5",
+    "cross-env": "^7.0.3",
+    "esbuild": "^0.14.48",
+    "ts-node": "^10.8.2",
+    "typescript": "^4.7.4"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
