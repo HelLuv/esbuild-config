@@ -1,6 +1,8 @@
 import path from "path";
 import {BuildOptions} from "esbuild";
 
+import {CleanPlugin} from "./plugins/CleanPlugin";
+
 
 const mode = process.env.MODE || "development";
 
@@ -14,11 +16,19 @@ function resolveRoot(...segments: string[]) {
 const config: BuildOptions = {
   outdir: resolveRoot("build"),
   entryPoints: [resolveRoot("src/index.jsx")],
-  entryNames: 'bundle',
+  entryNames: '[dir]/bundle.[name]-[hash]',
+  allowOverwrite: true,
   bundle: true,
   minify: isProd,
   sourcemap: isDev,
   tsconfig: resolveRoot("tsconfig.json"),
+  loader: {
+    ".png": "file",
+    ".jpg": "file",
+    ".jpeg": "file",
+    ".svg": "file",
+  },
+  plugins: [CleanPlugin],
 }
 export default config;
 
