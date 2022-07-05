@@ -2,6 +2,7 @@ import path from "path";
 import {BuildOptions} from "esbuild";
 
 import {CleanPlugin} from "./plugins/CleanPlugin";
+import {HTMLPlugin} from "./plugins/HTMLPlugin";
 
 
 const mode = process.env.MODE || "development";
@@ -22,13 +23,28 @@ const config: BuildOptions = {
   minify: isProd,
   sourcemap: isDev,
   tsconfig: resolveRoot("tsconfig.json"),
+  metafile: true,
   loader: {
     ".png": "file",
     ".jpg": "file",
     ".jpeg": "file",
     ".svg": "file",
   },
-  plugins: [CleanPlugin],
+  plugins: [
+    CleanPlugin,
+    HTMLPlugin({
+      title: "ES Build for sure"
+    })
+  ],
+  watch: isDev && {
+    onRebuild(err) {
+      if (err) {
+        console.log("Rebuild error >>> ", err);
+      } else {
+        console.log('rebuilded ✅ ✅ ✅  ');
+      }
+    }
+  }
 }
 export default config;
 
