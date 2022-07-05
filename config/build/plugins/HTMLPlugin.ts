@@ -39,6 +39,15 @@ const renderHTML: (options: HTMLPluginOptions) => string = ({template, title = "
           <body>
             <div id="root"></div>
             ${jsPaths?.map((path) => `<script src="${path}"></script>`).join("\n")}
+            <script>
+              const eventSource = new EventSource('http://localhost:3000/subscribe');
+              eventSource.onopen = function () {console.log("event source connection is open")};
+              eventSource.onerror = function () {console.log("some error ocurred in event source")};
+              eventSource.onmessage = function () {
+                  console.log("event source window reload");
+                  window.location.reload();
+              };
+            </script>
           </body>
           </html>
           `

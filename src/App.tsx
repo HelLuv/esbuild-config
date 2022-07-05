@@ -12,7 +12,7 @@ const App: React.FC = (props) => {
       <img src={img} alt="some image"/>
       <img src={img} alt="some image"/>
       <img src={img} alt="some image"/>
-      <h1>value = {count}</h1>
+      <h1>WOOW = {count}</h1>
       <button onClick={onButtonClick}>Click</button>
     </div>
   );

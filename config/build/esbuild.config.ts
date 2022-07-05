@@ -36,15 +36,6 @@ const config: BuildOptions = {
       title: "ES Build for sure"
     })
   ],
-  watch: isDev && {
-    onRebuild(err) {
-      if (err) {
-        console.log("Rebuild error >>> ", err);
-      } else {
-        console.log('rebuilded ✅ ✅ ✅  ');
-      }
-    }
-  }
 }
 export default config;
 
